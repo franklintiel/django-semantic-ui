@@ -19,6 +19,7 @@ class SemanticUI(object):
             self.static_folder_path = '{0}'.format(settings.STATIC_ROOT)
             if not os.path.exists(self.static_folder_path):
                 raise StaticFolderException("[ERROR] Static folder not exists.")
+            print "Static Folder: {0}".format(self.static_folder_path)
         except:
             raise SemanticUIException("[ERROR] STATIC_ROOT constant not defined on the settings.py.")
 
@@ -32,7 +33,7 @@ class SemanticUI(object):
         try:
             print "Moving to static folder..."
             os.chdir(self.static_folder_path)
-            package_json_path = '{0}package.json'.format(self.static_folder_path)
+            package_json_path = '{0}/package.json'.format(self.static_folder_path)
             file_exists = os.path.isfile(package_json_path)
             if not file_exists:
                 print "Generationg the package.json file..."
@@ -66,21 +67,18 @@ class SemanticUI(object):
             os.system('npm uninstall gulp --save-dev')
             print "Gulp module has been removed successfully!."
             print "Deleting semantic folder..."
-            semantic_path = '{0}{1}'.format(self.static_folder_path, self.semantic_folder)
-            if not os.path.exists(semantic_path):
-                raise SemanticUIException("[ERROR] Semantic folder not exists.")
-            else:
+            try:
                 os.system('rm -rf {0}'.format(self.semantic_folder))
                 print "Semantic folder has been removed successfully."
                 print "Deleting semantic.json file..."
-                semantic_json_file_path = '{0}semantic.json'.format(self.static_folder_path)
-                file_exists = os.path.isfile(semantic_json_file_path)
-                if  not file_exists:
-                    raise SemanticUIException("[ERROR] Semantic JSON file not exists.")
-                else:
+                try:
                     os.system('rm -f semantic.json')
                     print "semantic.json file has been removed..."
-                print "Semantic UI has been removed successfully!"
+                    print "Semantic UI has been removed successfully!"
+                except:
+                    raise SemanticUIException("[ERROR] Semantic JSON file not exists.")
+            except:
+                raise SemanticUIException("[ERROR] Semantic folder not exists.")
         except:
             raise SemanticUIException("[ERROR] Uninstalling failed cannot move to static folder.")
 
@@ -93,15 +91,12 @@ class SemanticUI(object):
         print "Moving to Static folder..."
         os.chdir(self.static_folder_path)
         semantic_path = '{0}/{1}'.format(self.static_folder_path, self.semantic_folder)
-        if not os.path.exists(semantic_path):
+        try:
+            print "Moving to Semantic folder..."
+            os.chdir(semantic_path)
+            print "Gulp build command executing..."
+            os.system('gulp build')
+            print "Gulp build command completed successfully."
+        except:
             raise SemanticUIException(
                 "[ERROR] Gulp build command failed, the semantic folder not exists or the name is incorrect.")
-        else:
-            try:
-                print "Moving to Semantic folder..."
-                os.chdir(semantic_path)
-                print "Gulp build command executing..."
-                os.system('gulp build')
-                print "Gulp build command completed successfully."
-            except:
-                raise SemanticUIException("[ERROR] Gulp build command failed cannot move to semantic folder.")
