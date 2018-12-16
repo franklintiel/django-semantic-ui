@@ -97,4 +97,5 @@ $ python manage.py semantic_ui uninstall --semantic_folder=semantic
 
 ## Releases notes:
 
-- 1.0.0: Initial and beta version (only installation and settings)
+- 1.0.0: Initial and beta version (only installation and settings).
+- 1.0.1b0: Bugs fixed semantic folder not found or not exists.
