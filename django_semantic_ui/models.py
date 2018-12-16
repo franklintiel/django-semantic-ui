@@ -92,7 +92,7 @@ class SemanticUI(object):
         print "Gulp Build command started..."
         print "Moving to Static folder..."
         os.chdir(self.static_folder_path)
-        semantic_path = '{0}{1}'.format(self.static_folder_path, self.semantic_folder)
+        semantic_path = '{0}/{1}'.format(self.static_folder_path, self.semantic_folder)
         if not os.path.exists(semantic_path):
             raise SemanticUIException(
                 "[ERROR] Gulp build command failed, the semantic folder not exists or the name is incorrect.")
