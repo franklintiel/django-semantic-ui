@@ -13,7 +13,7 @@ class SemanticUI(object):
         try:
             self.semantic_ui_version = settings.SEMANTIC_UI_VERSION
         except:
-            self.gulp_version = 'latest'
+            self.semantic_ui_version = 'latest'
         self.semantic_folder = semantic_folder if semantic_folder else 'semantic'
         try:
             self.static_folder_path = '{0}'.format(settings.STATIC_ROOT)
