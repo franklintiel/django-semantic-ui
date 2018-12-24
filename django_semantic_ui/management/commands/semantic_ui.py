@@ -7,7 +7,6 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('subcommand', choices=['install', 'uninstall', 'gulp_build'])
-        parser.add_argument('--semantic_folder', type=str, nargs='?')
 
     def handle(self, *args, **options):
         if 'subcommand' in options:
