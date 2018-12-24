@@ -100,6 +100,8 @@ class SemanticUI(object):
                                 node_modules_path))
                         else:
                             os.system("rm -rf node_modules")
+                        os.rmdir(self.semantic_files_path)
+                        os.rmdir(self.static_folder_path)
                         print "Semantic UI has been removed successfully!"
                     except:
                         raise SemanticUIException("[ERROR] Semantic JSON file not exists.")
