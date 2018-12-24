@@ -28,7 +28,17 @@ class SemanticUI(object):
                 if not os.path.exists(self.static_folder_path):
                     print "Creating the Static folder on PATH: {0}".format(self.static_folder_path)
                     os.mkdir(self.static_folder_path)
-                print "Static Folder: {0}".format(self.static_folder_path)
+                try:
+                    if not os.path.exists(self.static_folder_path):
+                        raise FolderNotFoundException("[ERROR] The Static folder not found. PATH: {0}".format(
+                            self.static_folder_path))
+                    self.semantic_files_path = '{0}/dsu'.format(self.static_folder_path)
+                    if not os.path.exists(self.semantic_files_path):
+                        print "Creating the django_semantic_ui folder on PATH: {0}".format(self.semantic_files_path)
+                        os.mkdir(self.static_folder_path)
+                    print "Semantic UI Folder: {0}".format(self.semantic_files_path)
+                except Exception as e:
+                    raise SemanticUIException(e.message)
         except Exception as e:
             raise SemanticUIException(e.message)
 
@@ -40,8 +50,8 @@ class SemanticUI(object):
         print "Installing started..."
         try:
             print "Moving to static folder..."
-            os.chdir(self.static_folder_path)
-            package_json_path = '{0}/package.json'.format(self.static_folder_path)
+            os.chdir(self.semantic_files_path)
+            package_json_path = '{0}/package.json'.format(self.semantic_files_path)
             file_exists = os.path.isfile(package_json_path)
             if not file_exists:
                 print "Generationg the package.json file..."
@@ -67,7 +77,7 @@ class SemanticUI(object):
         print "Uninstalling started..."
         try:
             print "Moving to Static folder..."
-            os.chdir(self.static_folder_path)
+            os.chdir(self.semantic_files_path)
             print "Uninstalling Semantic UI module..."
             os.system('npm uninstall semantic-ui --save')
             print "Semantic UI module has been removed successfully!."
@@ -82,9 +92,22 @@ class SemanticUI(object):
                 try:
                     os.system('rm -f semantic.json')
                     print "semantic.json file has been removed..."
-                    print "Semantic UI has been removed successfully!"
+                    print "Deleting package.json file..."
+                    try:
+                        os.system('rm -f package*')
+                        print "package.json file has been removed..."
+                        node_modules_path = '{0}/node_modules'.format(self.semantic_files_path)
+                        if not os.path.exists(node_modules_path):
+                            raise FolderNotFoundException("[ERROR] node_modules folder not found. PATH: {0}".format(
+                                node_modules_path))
+                        else:
+                            os.system("rm -rf node_modules")
+                        print "Semantic UI has been removed successfully!"
+                    except:
+                        raise SemanticUIException("[ERROR] Semantic JSON file not exists.")
                 except:
                     raise SemanticUIException("[ERROR] Semantic JSON file not exists.")
+
             except:
                 raise SemanticUIException("[ERROR] Semantic folder not exists.")
         except:
@@ -96,9 +119,8 @@ class SemanticUI(object):
         :return:
         """
         print "Gulp Build command started..."
-        print "Moving to Static folder..."
-        os.chdir(self.static_folder_path)
-        semantic_path = '{0}/{1}'.format(self.static_folder_path, self.semantic_folder)
+        print "Moving to Semantic files folder..."
+        semantic_path = '{0}/{1}'.format(self.semantic_files_path, self.semantic_folder)
         try:
             print "Moving to Semantic folder..."
             os.chdir(semantic_path)
