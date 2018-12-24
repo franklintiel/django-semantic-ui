@@ -16,13 +16,13 @@ class SemanticUI(object):
             self.semantic_ui_version = 'latest'
         self.semantic_folder = semantic_folder if semantic_folder else 'semantic'
         try:
-            self.static_folder_path = '{0}'.format(settings.STATIC_ROOT)
+            self.static_folder_path = '{0}/static'.format(os.path.dirname(__file__))
             if not os.path.exists(self.static_folder_path):
-                raise StaticFolderException("[ERROR] Static folder not exists.")
+                raise StaticFolderException("[ERROR] Static folder not exists. PATH: {0}".format(
+                    self.static_folder_path))
             print "Static Folder: {0}".format(self.static_folder_path)
-        except:
-            raise SemanticUIException("[ERROR] STATIC_ROOT constant not defined on the settings.py.")
-
+        except Exception as e:
+            raise SemanticUIException(e.message)
 
     def install(self):
         """
