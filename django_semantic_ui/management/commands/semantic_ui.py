@@ -11,30 +11,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if 'subcommand' in options:
+            object = SemanticUI()
             if options.get('subcommand') == 'install':
-                object = SemanticUI()
                 object.install()
             elif options.get('subcommand') == 'uninstall':
-                if not options.get('semantic_folder'):
-                    raise SemanticUIException("""
-                    ERROR: Uninstalling failed, you need to pass the argument --semantic_folder
-                    By example:
-                    $ python manage.py semanticui uninstall --semantic_folder=semantic
-                    {0}
-                    """.format(self.help))
-                else:
-                    object = SemanticUI(semantic_folder=options.get('semantic_folder'))
-                    object.uninstall()
+                object.uninstall()
             elif options.get('subcommand') == 'gulp_build':
-                if not options.get('semantic_folder'):
-                    raise SemanticUIException("""
-                    ERROR: Gulp Build command failed, you need to pass the argument --semantic_folder
-                    By example:
-                    $ python manage.py semanticui gulp_build --semantic_folder=semantic
-                    {0}
-                    """.format(self.help))
-                else:
-                    object = SemanticUI(semantic_folder=options.get('semantic_folder'))
-                    object.build()
+                object.build()
             else:
                 print self.help
