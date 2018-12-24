@@ -37,8 +37,8 @@ class SemanticUI(object):
                         print "Creating the django_semantic_ui folder on PATH: {0}".format(self.semantic_files_path)
                         os.mkdir(self.static_folder_path)
                     print "Semantic UI Folder: {0}".format(self.semantic_files_path)
-                except Exception as e:
-                    raise SemanticUIException(e.message)
+                except Exception as e2:
+                    raise SemanticUIException(e2.message)
         except Exception as e:
             raise SemanticUIException(e.message)
 
