@@ -60,6 +60,7 @@ $ python manage.py semantic_ui gulp_build
 7) Configure the static files and folder, see: [Managing static files](https://docs.djangoproject.com/en/1.11/howto/static-files/)
 ```python
 STATIC_URL = '/static/'
+```
 
 8) Add CSS and JS to your django project
 ```html
@@ -85,7 +86,6 @@ STATIC_URL = '/static/'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```
-
 - And execute the collectstatic command
 ```shell
 $ python manage.py collectstatic
@@ -97,13 +97,11 @@ $ python manage.py collectstatic
 # settings.py
 GULP_VERSION = '3.9.1'
 ```
-
 - SEMANTIC_UI_VERSION by default is None, if you want to install a specific version of semantic-ui module (local), you can use this settings, by example:
 ```python
 # settings.py
 SEMANTIC_UI_VERSION = '^2.4.2'
 ```
-
 - SEMANTIC_DIRNAME by default is 'semantic'', if you defined a custom dirname for the JS and CSS files when the Semantic UI Framework was installed (step 4), you need to add it on this settings.
 ```python
 # settings.py
@@ -124,3 +122,4 @@ $ python manage.py semantic_ui uninstall && pip uninstall django-semantic-ui
 - 1.0.3: README.md file updated, bugs fixed self.semantic_ui_version undefined.
 - 1.1.0: Logic updated to install / uninstall django-semantic-ui, new settings added.
 - 1.1.1: Bugs fixed related with the semantic files path.
+- 1.1.2: README.md updated
