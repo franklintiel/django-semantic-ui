@@ -1,11 +1,12 @@
 import os
 from django.conf import settings
-from .exceptions import StaticFolderException, SemanticUIException
+from .exceptions import FolderNotFoundException, SemanticUIException
 
 
 class SemanticUI(object):
 
-    def __init__(self, semantic_folder='semantic'):
+    def __init__(self):
+        self.project_folder_path = os.path.dirname(__file__)
         try:
             self.gulp_version = settings.GULP_VERSION
         except:
@@ -14,13 +15,20 @@ class SemanticUI(object):
             self.semantic_ui_version = settings.SEMANTIC_UI_VERSION
         except:
             self.semantic_ui_version = 'latest'
-        self.semantic_folder = semantic_folder if semantic_folder else 'semantic'
         try:
-            self.static_folder_path = '{0}/static'.format(os.path.dirname(__file__))
-            if not os.path.exists(self.static_folder_path):
-                raise StaticFolderException("[ERROR] Static folder not exists. PATH: {0}".format(
-                    self.static_folder_path))
-            print "Static Folder: {0}".format(self.static_folder_path)
+            self.semantic_folder = settings.SEMANTIC_DIRNAME
+        except:
+            self.semantic_folder = 'semantic'
+        try:
+            if not os.path.exists(self.project_folder_path):
+                raise FolderNotFoundException("[ERROR] Project folder not found. PATH: {0}".format(
+                    self.project_folder_path))
+            else:
+                self.static_folder_path = '{0}/static'.format(self.project_folder_path)
+                if not os.path.exists(self.static_folder_path):
+                    print "Creating the Static folder on PATH: {0}".format(self.static_folder_path)
+                    os.mkdir(self.static_folder_path)
+                print "Static Folder: {0}".format(self.static_folder_path)
         except Exception as e:
             raise SemanticUIException(e.message)
 
