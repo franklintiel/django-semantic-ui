@@ -18,6 +18,10 @@ setuptools.setup(
         #"Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 2.7",
+        'Environment :: Web Environment',
+        'Framework :: Django',
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
     ],
     keywords="semantic-ui semanticui semantic ui, django-semantic-ui django-semanticui django-semantic-ui",
     project_urls={
