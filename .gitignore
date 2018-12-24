@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 .idea/
 install.txt
+django_semantic_ui/static/
