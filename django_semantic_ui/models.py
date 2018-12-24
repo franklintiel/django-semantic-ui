@@ -29,16 +29,14 @@ class SemanticUI(object):
                     print "Creating the Static folder on PATH: {0}".format(self.static_folder_path)
                     os.mkdir(self.static_folder_path)
                 try:
-                    if not os.path.exists(self.static_folder_path):
-                        raise FolderNotFoundException("[ERROR] The Static folder not found. PATH: {0}".format(
-                            self.static_folder_path))
+                    os.chdir(self.static_folder_path)
                     self.semantic_files_path = '{0}/dsu'.format(self.static_folder_path)
                     if not os.path.exists(self.semantic_files_path):
                         print "Creating the django_semantic_ui folder on PATH: {0}".format(self.semantic_files_path)
-                        os.mkdir(self.static_folder_path)
+                        os.mkdir(self.semantic_files_path)
                     print "Semantic UI Folder: {0}".format(self.semantic_files_path)
-                except Exception as e2:
-                    raise SemanticUIException(e2.message)
+                except Exception as e:
+                    raise SemanticUIException(e.message)
         except Exception as e:
             raise SemanticUIException(e.message)
 
