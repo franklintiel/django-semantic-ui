@@ -68,13 +68,13 @@ STATIC_URL = '/static/'
 <head>
     <meta charset="UTF-8">
     <title>Semantic UI Test</title>
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}semantic/dist/semantic.min.css">
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}dsu/semantic_folder_name/dist/semantic.min.css">
 </head>
 <body>
     <h1>Title example</h1>
     <button>Button Test example</button>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="{{ STATIC_URL }}semantic/dist/semantic.min.js"></script>
+    <script src="{{ STATIC_URL }}dsu/semantic_folder_name/dist/semantic.min.js"></script>
 </body>
 </html>
 ```
@@ -123,3 +123,4 @@ $ python manage.py semantic_ui uninstall && pip uninstall django-semantic-ui
 - 1.0.2: Bugs fixed semantid and static folders not found or not exists.
 - 1.0.3: README.md file updated, bugs fixed self.semantic_ui_version undefined.
 - 1.1.0: Logic updated to install / uninstall django-semantic-ui, new settings added.
+- 1.1.1: Bugs fixed related with the semantic files path.
