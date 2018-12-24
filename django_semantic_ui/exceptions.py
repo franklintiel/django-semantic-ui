@@ -1,4 +1,4 @@
-class StaticFolderException(Exception):
+class FolderNotFoundException(Exception):
     """
     Exception displayed when the static folder not exists.
     """
