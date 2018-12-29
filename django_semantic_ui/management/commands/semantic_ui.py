@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from django.core.management.base import BaseCommand
 from django_semantic_ui.models import SemanticUI
-from django_semantic_ui.exceptions import SemanticUIException
 
 
 class Command(BaseCommand):
