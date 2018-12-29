@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
     name="django_semantic_ui",
-    version="1.2.0",
+    version="1.2.1",
     author="Franklin Sarmiento",
     author_email="franklinitiel@gmail.com",
     description="Library to easy install, configure and use Semantic UI framework with Django project",
