@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import os
 from django.conf import settings
 from .exceptions import FolderNotFoundException, SemanticUIException
+from .utils import Constant
 
 
 class SemanticUI(object):
@@ -8,17 +11,21 @@ class SemanticUI(object):
     def __init__(self):
         self.project_folder_path = os.path.dirname(__file__)
         try:
+            self.jquery_url = settings.DSU_JQUERY_URL
+        except:
+            self.jquery_url = Constant.JQUERY_URL
+        try:
             self.gulp_version = settings.GULP_VERSION
         except:
-            self.gulp_version = '3.9.1'
+            self.gulp_version = Constant.GULP_VERSION
         try:
             self.semantic_ui_version = settings.SEMANTIC_UI_VERSION
         except:
-            self.semantic_ui_version = 'latest'
+            self.semantic_ui_version = Constant.SEMANTIC_UI_VERSION
         try:
             self.semantic_folder = settings.SEMANTIC_DIRNAME
         except:
-            self.semantic_folder = 'semantic'
+            self.semantic_folder = Constant.SEMANTIC_DIRNAME
         try:
             if not os.path.exists(self.project_folder_path):
                 raise FolderNotFoundException("[ERROR] Project folder not found. PATH: {0}".format(
