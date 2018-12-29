@@ -24,18 +24,24 @@ class Utils:
         pass
 
     @staticmethod
-    def get_semantic_javascript_url(semantic_folder=Constant.SEMANTIC_DIRNAME):
+    def get_static_folder():
         try:
             static_url = settings.STATIC_URL
         except:
             static_url = Constant.STATIC_URL
+        return static_url
+
+    @staticmethod
+    def get_semantic_javascript_url(semantic_folder=Constant.SEMANTIC_DIRNAME):
         return '{0}{1}/{2}{3}'.format(
-            static_url, Constant.PACKAGE_NAME, semantic_folder, Constant.JAVASCRIPT_FILE)
+            Utils.get_static_folder(), Constant.PACKAGE_NAME,
+            semantic_folder, Constant.JAVASCRIPT_FILE)
 
     @staticmethod
     def get_semantic_stylesheet_url(semantic_folder=Constant.SEMANTIC_DIRNAME):
         return '{0}{1}/{2}{3}'.format(
-            '/static/', Constant.PACKAGE_NAME, semantic_folder, Constant.STYLESHEET_FILE)
+            Utils.get_static_folder(), Constant.PACKAGE_NAME,
+            semantic_folder, Constant.STYLESHEET_FILE)
 
     @staticmethod
     def get_text_value(value):
