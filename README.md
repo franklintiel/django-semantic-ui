@@ -64,18 +64,18 @@ STATIC_URL = '/static/'
 
 8) Add CSS and JS to your django project
 ```html
+{% load dsu %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Semantic UI Test</title>
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}dsu/semantic_folder_name/dist/semantic.min.css">
+    {% dsu_stylesheet_url %}
 </head>
 <body>
-    <h1>Title example</h1>
-    <button>Button Test example</button>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="{{ STATIC_URL }}dsu/semantic_folder_name/dist/semantic.min.js"></script>
+    <!-- Your HTML code -->
+    {% dsu_jquery_url %}
+    {% dsu_javascript_url %}
 </body>
 </html>
 ```
@@ -107,6 +107,11 @@ SEMANTIC_UI_VERSION = '^2.4.2'
 # settings.py
 SEMANTIC_DIRNAME = 'semantic'
 ```
+- DSU_JQUERY_URL by default is 'https://code.jquery.com/jquery-3.1.1.min.js', if you want define a custom path to you jquery, so, you can use this template tag.
+```python
+# settings.py
+DSU_JQUERY_URL = '...your jquery path...'
+```
 
 ## Uninstall django-semantic-ui
 - You can uninstall Semantic UI Framework and Gulp (local version) using the follow command:
@@ -123,3 +128,4 @@ $ python manage.py semantic_ui uninstall && pip uninstall django-semantic-ui
 - 1.1.0: Logic updated to install / uninstall django-semantic-ui, new settings added.
 - 1.1.1: Bugs fixed related with the semantic files path.
 - 1.1.2: README.md updated
+- 1.2.0: New templatetags added to load the main javascripts, stylesheets and jquery_url
