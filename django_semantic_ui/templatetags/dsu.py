@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django import template
-from django_semantic_ui.utils import Utils
+from django_semantic_ui.utils import Utils, Constant
 from django_semantic_ui.models import SemanticUI
 
 
@@ -49,9 +49,14 @@ def dsu_jquery_url():
     NOTE: You can change the jquery_url in your settings.py using the DSU_JQUERY_URL setting.
     :return: string
     """
-    return Utils.render_tag(
-        tag='script',
-        attrs={
-            'src': dsu.jquery_url,
-            'integrity': 'sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=',
-            'crossorigin': 'anonymous'})
+    if Constant.JQUERY_URL == dsu.jquery_url:
+        return Utils.render_tag(
+            tag='script',
+            attrs={
+                'src': dsu.jquery_url,
+                'integrity': 'sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=',
+                'crossorigin': 'anonymous'})
+    else:
+        return Utils.render_tag(
+            tag='script',
+            attrs={'src': dsu.jquery_url})
