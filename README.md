@@ -129,3 +129,5 @@ $ python manage.py semantic_ui uninstall && pip uninstall django-semantic-ui
 - 1.1.1: Bugs fixed related with the semantic files path.
 - 1.1.2: README.md updated
 - 1.2.0: New templatetags added to load the main javascripts, stylesheets and jquery_url
+- 1.2.1: Bugs fixed using the DSU_JQUERY_URL settings.
+- 1.2.2: README.md updated, New static method added to load the STATIC_URL from django project.
