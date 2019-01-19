@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import os
+import time
 from django.conf import settings
 from .exceptions import FolderNotFoundException, SemanticUIException
 from .utils import Constant
@@ -42,6 +43,7 @@ class SemanticUI(object):
                         print "Creating the django_semantic_ui folder on PATH: {0}".format(self.semantic_files_path)
                         os.mkdir(self.semantic_files_path)
                     print "Semantic UI Folder: {0}".format(self.semantic_files_path)
+                    os.chdir(settings.BASE_DIR)
                 except Exception as e:
                     raise SemanticUIException(e.message)
         except Exception as e:
@@ -68,6 +70,10 @@ class SemanticUI(object):
                 self.gulp_version)
             print "Installing semantic-ui module..."
             os.system('npm install semantic-ui@{0} --save'.format(self.semantic_ui_version))
+            print('Indexing "semantic-ui" on your django project path: {0}'.format(settings.BASE_DIR))
+            os.chdir(settings.BASE_DIR)
+            print("Indexing modules...")
+            time.sleep(5)
             print "Semantic-ui module has been installed successfully (Version installed {0}).".format(
                 self.semantic_ui_version)
             print "Semantic UI  has been installed successfully..."
@@ -112,13 +118,16 @@ class SemanticUI(object):
                         print "Semantic folder removed."
                         print "Removing static folder..."
                         os.rmdir(self.static_folder_path)
+                        print('Indexing "semantic-ui" on your django project path: {0}'.format(settings.BASE_DIR))
+                        os.chdir(settings.BASE_DIR)
+                        print("Indexing modules...")
+                        time.sleep(5)
                         print "Static folder removed."
                         print "Semantic UI has been removed successfully!"
                     except:
                         raise SemanticUIException("[ERROR] Semantic JSON file not exists.")
                 except:
                     raise SemanticUIException("[ERROR] Semantic JSON file not exists.")
-
             except:
                 raise SemanticUIException("[ERROR] Semantic folder not exists.")
         except:
@@ -137,6 +146,10 @@ class SemanticUI(object):
             os.chdir(semantic_path)
             print "Gulp build command executing..."
             os.system('gulp build')
+            print('Indexing "semantic-ui" on your django project path: {0}'.format(settings.BASE_DIR))
+            os.chdir(settings.BASE_DIR)
+            print("Indexing modules...")
+            time.sleep(5)
             print "Gulp build command completed successfully."
         except:
             raise SemanticUIException(
