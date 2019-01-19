@@ -102,12 +102,12 @@ GULP_VERSION = '3.9.1'
 # settings.py
 SEMANTIC_UI_VERSION = '^2.4.2'
 ```
-- SEMANTIC_DIRNAME by default is 'semantic'', if you defined a custom dirname for the JS and CSS files when the Semantic UI Framework was installed (step 4), you need to add it on this settings.
+- SEMANTIC_DIRNAME by default is 'semantic'', if you have defined a custom dirname for the JS and CSS files when the Semantic UI Framework was installed (step 4), you need to add it on this settings.
 ```python
 # settings.py
 SEMANTIC_DIRNAME = 'semantic'
 ```
-- DSU_JQUERY_URL by default is 'https://code.jquery.com/jquery-3.1.1.min.js', if you want define a custom path to you jquery, so, you can use this template tag.
+- DSU_JQUERY_URL by default is 'https://code.jquery.com/jquery-3.1.1.min.js', if you have defined a custom path to you jquery, so, you can use this template tag.
 ```python
 # settings.py
 DSU_JQUERY_URL = '...your jquery path...'
@@ -128,6 +128,7 @@ $ python manage.py semantic_ui uninstall && pip uninstall django-semantic-ui
 - 1.1.0: Logic updated to install / uninstall django-semantic-ui, new settings added.
 - 1.1.1: Bugs fixed related with the semantic files path.
 - 1.1.2: README.md updated
-- 1.2.0: New templatetags added to load the main javascripts, stylesheets and jquery_url
+- 1.2.0: New templatetags added to load the javascripts and stylesheets files
 - 1.2.1: Bugs fixed using the DSU_JQUERY_URL settings.
 - 1.2.2: README.md updated, New static method added to load the STATIC_URL from django project.
+- 1.2.3: README.md updated, bugs fixed to execute the command "python manage.py runserver" after installed.
